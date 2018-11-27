@@ -1,0 +1,338 @@
+//VERY IMPORTANT RESET FUNCTION!!!!!
+function reset(){
+  penWidth(1);
+hide();
+penUp();
+moveTo(160,240);
+penDown();
+}
+//background
+hide();
+penUp();
+drawBackground();
+function drawBackground(){
+  background();
+  stars();
+  nebula();
+  asteroids();
+}
+function background(){
+  penRGB(randomNumber(0,25),randomNumber(0,25),randomNumber(0,25),1);
+  dot(450);
+}
+function stars(){
+  for(var i = 0; i <50; i++){
+    penWidth(1);
+    penRGB(255,255,255,0.25);
+    moveTo(randomNumber(0,320),randomNumber(0,450));
+    dot(1);
+  }
+}
+function asteroids(){
+  for(var i = 0; i<10;i++){
+    penRGB(randomNumber(90,100),randomNumber(90,100),randomNumber(90,100),1);
+    moveTo(randomNumber(0,320),randomNumber(0,450));
+    drawAsteroid();
+  }
+}
+function drawAsteroid(){
+  penWidth(randomNumber(10,15));
+  for(var i=0; i<10;i++){
+    penDown();
+    moveForward(randomNumber(2.5,7.5));
+    turnRight(randomNumber(10,100));
+    penUp();
+  }
+}
+function nebula(){
+  moveTo(160,225);
+  penDown();
+  penWidth(90);
+  for (var i = 0; i < 45; i++) {
+    penRGB(randomNumber(150,200),randomNumber(100,150),randomNumber(150,200),0.0425);
+    moveForward(160);
+    turnRight(randomNumber(45,180));
+  }
+  penUp();
+}
+
+function detail() {
+  dot(randomNumber (10,20));
+  moveForward(10);
+  dot(randomNumber (10,20));
+  turnLeft(180);
+  moveForward(15);
+  
+}
+//Sun
+reset();
+penUp();
+moveTo(120,230);
+penDown();
+  penRGB(randomNumber(239,255), randomNumber(0,255), 0, 1.0);
+  dot(60);
+  penRGB(randomNumber(239,255), randomNumber(0,255), 0, 0.125);
+  dot(80);
+//Planets
+reset();
+function drawPlanet() {
+  penRGB(randomNumber(1, 255), randomNumber(1, 255), randomNumber(1, 255), 1);
+  dot(randomNumber(30, 40));
+  penRGB(randomNumber(1, 255), randomNumber(1, 255), randomNumber(1, 255), 1);
+  detail();
+  detail();
+
+}
+function drawMoon() {
+  turnRight(90);
+  moveForward(75);
+  penRGB(randomNumber(1, 255), randomNumber(1, 255), randomNumber(1, 255), 1);
+  dot(randomNumber(15, 20));
+}
+penUp();
+hide();
+moveTo(randomNumber(0,455), randomNumber(0,455));
+drawPlanet();
+drawMoon();
+turnLeft(90);
+moveForward(200);
+turnRight(90);
+drawPlanet();
+moveBackward(200);
+turnRight(90);
+moveForward(200);
+moveForward(100);
+drawPlanet();
+turnLeft(90);
+drawMoon();
+turnLeft(90);
+moveForward(200);
+drawPlanet();
+
+
+
+
+
+//                                                COMET
+reset();
+penUp();
+
+//Comet Inside
+function drawCometInside(){
+ penUp();
+ 
+ penDown();
+ penWidth(13);
+for (var i = 0; i < 75; i++) {
+  penRGB(randomNumber(0,185), randomNumber(171,242), 255, 1);
+     moveForward(randomNumber(2.5,7.5));
+  turnLeft(160);
+ }}
+ //Just random Functions
+function drawTriangle() {
+ show();
+ moveForward(randomNumber(172,181));
+    turnRight(175);
+    moveForward(randomNumber(172,181));
+   penUp();
+   turnLeft(180);
+   moveForward(randomNumber(172,181));
+   turnRight(175);
+   penDown();
+   moveForward(randomNumber(172,181));
+   penUp();
+   turnLeft(180);
+   moveForward(randomNumber(172,181));
+   turnLeft(175);
+   moveForward(randomNumber(172,181));
+}
+//Comet outside
+function drawComet(){
+
+penRGB(0, randomNumber(20,164), randomNumber(20,255), 0.45);
+  penUp();
+  turnLeft(randomNumber(90,360));
+  moveForward(25);
+  turnLeft();
+  penDown();
+penWidth(14);
+drawTriangle();
+dot(27);
+drawCometInside();
+penUp();
+}
+for (var i = 0; i < 3; i++) {
+  moveTo(randomNumber (0,455), randomNumber(0,455));
+  drawComet();
+  moveTo(randomNumber (0,455), randomNumber(0,455));
+}
+
+
+
+
+//Spaceships
+reset();
+drawAllSpaceships();
+function drawAllSpaceships() {
+  if(randomNumber(0,1) && randomNumber(0,1)){ // false if 0, true if 1
+    drawSuperStarDestroyer();
+    drawDeathStar();
+  }
+  else if (randomNumber(0,1))
+    drawDeathStar();
+  else
+    drawSuperStarDestroyer();
+  penRGB(255, 255, 255, 1);
+  for (var i = 0; i < randomNumber(5, 25); i++) {
+    penUp();
+    moveTo(randomNumber(20, 300), randomNumber(20, 430));
+    penDown();
+     if(randomNumber(0,1) && randomNumber(0,1)) // false if 0, true if 1
+       drawSpaceshipA();
+     else
+       drawSpaceshipB();
+     }
+}
+function drawSuperStarDestroyer() {
+  penRGB(255, 255, 255, 1);
+  penDown();
+  turnTo(0);
+  turnRight(85);
+  moveBackward(100);
+  turnRight(5);
+  moveForward(100);
+  turnLeft(90);
+  moveForward(10);
+  drawPowerGeneratorA();
+  penUp();
+}
+function drawDeathStar() {
+  penUp();
+  moveTo(90, 300);
+  penDown();
+  penRGB(100, 100, 100, 1);
+  dot(25);
+  penUp();
+  moveTo(95, 290);
+  penRGB(90, 90, 90, 1);
+  dot(5);
+  moveTo(80,300);
+  penRGB(1, 1, 1, 1);
+  turnRight(90);
+  moveForward(20);
+  turnTo(0);
+  penRGB(255, 255, 255, 1);
+  penDown();
+}
+function drawGeneratorSideA() {
+  penDown();
+  turnRight(90);
+  penWidth(3);
+  moveForward(3);
+  turnLeft(90);
+  moveForward(3);
+  dot(2);
+  moveBackward(3);
+  turnRight(90);
+  moveBackward(3);
+  turnTo(0);
+  penWidth(2);
+  penUp();
+}
+function drawGeneratorSideB() {
+  penDown();
+  turnLeft(90);
+  penWidth(3);
+  moveForward(3);
+  turnRight(90);
+  moveForward(3);
+  dot(2);
+  moveBackward(3);
+  turnLeft(90);
+  moveBackward(3);
+  turnTo(0);
+  penWidth(2);
+  penUp();
+}
+function drawPowerGeneratorA() {
+  penDown();
+  turnTo(0);
+  penWidth(2);
+  moveForward(3);
+  drawGeneratorSideA();
+  turnTo(0);
+  drawGeneratorSideB();
+  penWidth(1);
+  penUp();
+}
+function drawPowerGeneratorB() {
+  penDown();
+  turnTo(0);
+  penWidth(2);
+  moveForward(3);
+  drawGeneratorSideB();
+  turnTo(0);
+  drawGeneratorSideA();
+  penWidth(1);
+  penUp();
+}
+function drawBodyDirA() {
+  penDown();
+  turnTo(0);
+  turnRight(75);
+  moveBackward(30);
+  turnRight(15);
+  moveForward(30);
+  turnLeft(90);
+  moveForward(8);
+  turnTo(0);
+  drawPowerGeneratorA();
+  penUp();
+}
+function drawBodyDirB() {
+  penDown();
+  turnTo(0);
+  turnLeft(75);
+  moveBackward(30);
+  turnLeft(15);
+  moveForward(30);
+  turnRight(90);
+  moveForward(8);
+  turnTo(0);
+  drawPowerGeneratorB();
+  penUp();
+}
+function drawSpaceshipA() {
+  if( randomNumber(0,1) ) // false if 0, true if 1
+  drawBodyDirA();
+else
+  drawBodyDirB();
+}
+function drawWing() {
+  penDown();
+  moveBackward( 5 );
+  moveForward( 10 );
+  moveBackward( 5 );
+  penUp();
+}
+function drawBodyBCenter() {
+  penDown();
+  moveForward(5);
+  dot(3);
+  moveForward(5);
+  penUp();
+}
+function drawBodyB() {
+  penDown();
+  turnTo(0);
+  drawWing();
+  turnRight(90);
+  drawBodyBCenter();
+  turnLeft(90);
+  drawWing();
+  penUp();}
+function drawSpaceshipB() {
+  penDown();
+  drawBodyB();
+  penUp();
+}
